@@ -29,6 +29,7 @@ export default function Layout({ children }) {
         <p></p>
         <header className=" ">E-sports dApp Platform</header>
         <div>
+          {/*
           <button className="flex justify-end bg-purple-500">
             <div>
               <Link href="/sign-login">
@@ -36,6 +37,7 @@ export default function Layout({ children }) {
               </Link>
             </div>
           </button>
+  */}
           <button className="flex justify-end bg-purple-500">
             <div>
               <Link href="/sign-registration">

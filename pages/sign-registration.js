@@ -3,12 +3,12 @@ import Web3Modal from 'web3modal';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-import { testAddress } from '../../config';
-import Test from '../../artifacts/contracts/Test.sol/Test.json';
+import { testAddress } from '../config';
+import Test from '../artifacts/contracts/Test.sol/Test.json';
 
 export default function myApp({ pageProps }) {
   const [formInput, updateFormInput] = useState({
-    gameId: '',
+    userId: '',
   });
   const router = useRouter();
 
@@ -20,7 +20,8 @@ export default function myApp({ pageProps }) {
 
     const contract = new ethers.Contract(testAddress, Test.abi, signer);
 
-    let transaction = await contract.registration(formInput.gameId);
+    console.log(formInput.userId);
+    let transaction = await contract.registration(parseInt(formInput.userId));
     // registration 중복은 어떻게 해결할까?
     await transaction.wait();
 
@@ -31,9 +32,11 @@ export default function myApp({ pageProps }) {
     <div className="flex justify-center">
       <div className="w-1/2 flex flex-col pb-12">
         <input
-          placeholder="Task Id"
+          placeholder="게임 아이디"
           className="mt-8 border rounded p-4"
-          onChange={(e) => updateFormInput({ ...formInput })}
+          onChange={(e) =>
+            updateFormInput({ ...formInput, userId: e.target.value })
+          }
         />
         <button
           onClick={register}

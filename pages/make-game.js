@@ -8,70 +8,97 @@ import Test from '../artifacts/contracts/Test.sol/Test.json';
 
 export default function MakeGame() {
   const [formInput, updateFormInput] = useState({
+    gameId: '',
     startAt: '',
     finishAt: '',
+    prize: '',
     joinFeeAmount: '',
     betFeeAmount: '',
   });
   const router = useRouter();
 
-  async function listNFTForSale() {
-    const url = await uploadToIPFS();
+  async function makeGame() {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
-    /* next, create the item */
-    const price = ethers.utils.parseUnits(formInput.price, 'ether');
-    let contract = new ethers.Contract(
-      marketplaceAddress,
-      NFTMarketplace.abi,
-      signer
+    const prize = ethers.utils.parseUnits(formInput.prize, 'ether');
+    const joinFeeAmount = ethers.utils.parseUnits(
+      formInput.joinFeeAmount,
+      'ether'
     );
-    let listingPrice = await contract.getListingPrice();
-    console.log(listingPrice);
-    listingPrice = listingPrice.toString();
-    console.log(listingPrice);
-    let transaction = await contract.createToken(url, price, {
-      value: listingPrice,
-    });
+    const betFeeAmount = ethers.utils.parseUnits(
+      formInput.betFeeAmount,
+      'ether'
+    );
+    let contract = new ethers.Contract(testAddress, Test.abi, signer);
+
+    let transaction = await contract.makeGame(
+      parseInt(formInput.gameId),
+      parseInt(formInput.startAt),
+      parseInt(formInput.finishAt),
+      joinFeeAmount,
+      betFeeAmount,
+      {
+        value: prize,
+      }
+    );
     await transaction.wait();
 
-    router.push('/');
+    router.replace('/');
   }
 
   return (
     <div className="flex justify-center">
       <div className="w-1/2 flex flex-col pb-12">
         <input
-          placeholder="Asset Name"
+          placeholder="게임 ID"
           className="mt-8 border rounded p-4"
           onChange={(e) =>
-            updateFormInput({ ...formInput, name: e.target.value })
+            updateFormInput({ ...formInput, gameId: e.target.value })
           }
         />
         <textarea
-          placeholder="Asset Description"
+          placeholder="시작 시간"
           className="mt-2 border rounded p-4"
           onChange={(e) =>
-            updateFormInput({ ...formInput, description: e.target.value })
+            updateFormInput({ ...formInput, startAt: e.target.value })
           }
         />
         <input
-          placeholder="Asset Price in Eth"
+          placeholder="종료 시간"
           className="mt-2 border rounded p-4"
           onChange={(e) =>
-            updateFormInput({ ...formInput, price: e.target.value })
+            updateFormInput({ ...formInput, finishAt: e.target.value })
           }
         />
-        <input type="file" name="Asset" className="my-4" onChange={onChange} />
-        {fileUrl && <img className="rounded mt-4" width="350" src={fileUrl} />}
+        <input
+          placeholder="상금 (단위:ETH)"
+          className="mt-2 border rounded p-4"
+          onChange={(e) =>
+            updateFormInput({ ...formInput, prize: e.target.value })
+          }
+        />
+        <input
+          placeholder="참가비"
+          className="mt-2 border rounded p-4"
+          onChange={(e) =>
+            updateFormInput({ ...formInput, joinFeeAmount: e.target.value })
+          }
+        />
+        <input
+          placeholder="배팅비"
+          className="mt-2 border rounded p-4"
+          onChange={(e) =>
+            updateFormInput({ ...formInput, betFeeAmount: e.target.value })
+          }
+        />
         <button
-          onClick={listNFTForSale}
+          onClick={makeGame}
           className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
         >
-          Create NFT
+          게임 생성
         </button>
       </div>
     </div>

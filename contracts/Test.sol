@@ -4,7 +4,7 @@ pragma solidity ^0.8.4;
 contract Test {
     struct User {
         address userAddress;
-        uint64 gameId;
+        uint64 userId;
     }
 
     struct Game {
@@ -111,15 +111,15 @@ contract Test {
         _;
     }
 
-    function registration(uint256 _gameId) public {
-        require(_gameId == uint256(uint64(_gameId)));
+    function registration(uint256 _userId) public {
+        require(_userId == uint256(uint64(_userId)));
 
         User memory _user = User({
             userAddress: msg.sender,
-            gameId: uint64(_gameId)
+            userId: uint64(_userId)
         });
         users.push(_user); //만약 탈퇴기능을 만든다면 .. push 수정
-        emit Registration(msg.sender, _gameId);
+        emit Registration(msg.sender, _userId);
     }
 
     function makeGame(
@@ -411,8 +411,6 @@ contract Test {
         }
         return _bettable;
     }
-
-    function getUserId() public view returns (uint64) {}
 
     //function whoIsWinner(){
     //나도몰라

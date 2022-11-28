@@ -4,14 +4,13 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { testAddress } from '../config';
-
 import Test from '../artifacts/contracts/test.sol/test.json';
 
 export default function Home() {
   const [games, setGames] = useState([]);
   const [loadingState, setLoadingState] = useState('not-loaded');
   useEffect(() => {
-    //  loadGames();
+    loadGames();
   }, []);
   const router = useRouter();
 
@@ -23,22 +22,31 @@ export default function Home() {
     const signer = provider.getSigner();
 
     const contract = new ethers.Contract(testAddress, Test.abi, signer);
-    /*
-    const data = await contract.fetchMyTrackers();
+    const data = await contract.joinableGame();
     const items = await Promise.all(
       data.map(async (i) => {
-        const tokenUri = await contract.tokenURI(i.tokenId);
+        let prize = ethers.utils.formatUnits(i.prize.toString(), 'ether');
+        let joinFeeAmount = ethers.utils.formatUnits(
+          i.joinFeeAmount.toString(),
+          'ether'
+        );
+        let betFeeAmount = ethers.utils.formatUnits(
+          i.betFeeAmount.toString(),
+          'ether'
+        );
         let item = {
-          tokenId: i.tokenId.toNumber(),
-          owner: i.owner,
-          image: tokenUri,
-          achievement: i.achievement,
+          gameId: i.gameId.toNumber(),
+          startAt: i.startAt.toNumber(),
+          finishAt: i.finishAt.toNumber(),
+          prize: prize,
+          joinFeeAmount: joinFeeAmount,
+          betFeeAmount: betFeeAmount,
+          gameStatus: i.gameStatus,
         };
         return item;
       })
     );
-    setTrackers(items);
-    */
+    setGames(items);
     setLoadingState('loaded');
   }
 
@@ -63,44 +71,35 @@ export default function Home() {
   }
   */
 
-  //if (loadingState === 'loaded' && !games.length)
-  return <h1 className="px-20 py-10 text-3xl">No games in home</h1>;
-  {
-    /*
+  if (loadingState === 'loaded' && !games.length)
+    return <h1 className="px-20 py-10 text-3xl">No games in home</h1>;
   return (
     <div className="flex justify-center">
       <div className="px-4" style={{ maxWidth: '1600px' }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
           {games.map((game, i) => (
             <div key={i} className="border shadow rounded-xl overflow-hidden">
-              <p>a</p>
-              {/*
-              <img src={tracker.image} />
               <div className="p-4">
-                <p
-                  style={{ height: '32px' }}
-                  className="text-l font-semibold"
-                  id={{ i }}
-                >
-                  tokenId : {tracker.tokenId}
+                <p style={{ height: '32px' }} className="text-l font-semibold">
+                  게임 시작 : {game.startAt}
                 </p>
                 <p style={{ height: '32px' }} className="text-l font-semibold">
-                  owner address :
+                  게임 종료 : {game.finishAt}
                 </p>
                 <p style={{ height: '32px' }} className="text-l font-semibold">
-                  {tracker.owner}
+                  상금 : {game.prize}
                 </p>
                 <p style={{ height: '32px' }} className="text-l font-semibold">
-                  {tracker.achievement}% completed
+                  참가비 : {game.joinFeeAmount}
                 </p>
-                <button
-                  onClick={(e) => {
-                    updateTracker(e.target.innerText);
-                  }}
-                  className="font-bold mt-4 bg-gray-500 text-black rounded p-4 shadow-lg"
-                >
-                  update tracker (id:{i + 1})
-                </button>
+                <p style={{ height: '32px' }} className="text-l font-semibold">
+                  베팅비 : {game.betFeeAmount}
+                </p>
+                {/*
+                <p style={{ height: '32px' }} className="text-l font-semibold">
+                  {game.gameStatus}
+                </p>
+          */}
               </div>
             </div>
           ))}
@@ -108,6 +107,4 @@ export default function Home() {
       </div>
     </div>
   );
-              */
-  }
 }
