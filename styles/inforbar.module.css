@@ -1,0 +1,16 @@
+.bar {
+  color: #ffffff;
+  width: 840px;
+  border: 1px solid transparent;
+  display: flex;
+  opacity: 1;
+  padding: 8px;
+  direction: ltr;
+  background: #202124;
+  box-shadow: none;
+  box-sizing: border-box;
+  transition: background 0.5s;
+  border-color: #202124;
+  border-radius: 8px;
+  flex-direction: column;
+}

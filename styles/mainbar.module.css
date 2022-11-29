@@ -1,0 +1,169 @@
+#darken {
+  --title-color: #ffffff;
+  --text-color: #98a7b5;
+  --sub-text-color: #656e78;
+  --placeholder-color: #4d565e;
+  --background-color: #24262b;
+  --standard-color: #1c1e22;
+  --shadow-color: #111415;
+  --page-shadow: linear-gradient(to right, #111415, rgba(17, 20, 21, 0));
+  --autofill-color: #f5f6f7;
+}
+
+.webmainLayout {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-weight: 400;
+  font-family: Inter, -apple-system, Framedcn, Helvetica Neue, Condensed,
+    DisplayRegular, Helvetica, Arial, PingFang SC, Hiragino Sans GB,
+    WenQuanYi Micro Hei, Microsoft Yahei, sans-serif;
+  color: var(--text-color);
+  box-sizing: border-box;
+  min-height: 100vh;
+  --title-color: 0;
+  --text-color: 0;
+  --sub-text-color: 0;
+  --placeholder-color: 0;
+  --background-color: 0;
+  --standard-color: 0;
+  --shadow-color: 0;
+  --primary-color: 0;
+  --yellow-color: 0;
+  --border-radius: 0;
+  --page-shadow: 0;
+  --autofill-color: 0;
+  --swiper-theme-color: 0;
+}
+
+.mainLayout-body {
+  -webkit-text-size-adjust: 100%;
+  border-collapse: initial;
+  border-spacing: initial;
+  caption-side: initial;
+  color: initial;
+  cursor: initial;
+  direction: initial;
+  empty-cells: initial;
+  font-variant: initial;
+  font: initial;
+  letter-spacing: initial;
+  line-height: initial;
+  list-style: initial;
+  orphans: initial;
+  quotes: initial;
+  tab-size: initial;
+  text-align: initial;
+  text-align-last: initial;
+  text-indent: initial;
+  text-shadow: initial;
+  text-transform: initial;
+  visibility: initial;
+  white-space: initial;
+  widows: initial;
+  word-spacing: initial;
+  word-wrap: initial;
+  word-break: keep-all;
+  font-family: Montserrat;
+  font-weight: 400;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.main-barlayout {
+  width: calc(100% - 260px);
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+}
+
+.mainbarwrap {
+  -webkit-text-size-adjust: 100%;
+  border-collapse: initial;
+  border-spacing: initial;
+  caption-side: initial;
+  color: initial;
+  cursor: initial;
+  direction: initial;
+  empty-cells: initial;
+  font-variant: initial;
+  font: initial;
+  letter-spacing: initial;
+  line-height: initial;
+  list-style: initial;
+  orphans: initial;
+  quotes: initial;
+  tab-size: initial;
+  text-align: initial;
+  text-align-last: initial;
+  text-indent: initial;
+  text-shadow: initial;
+  text-transform: initial;
+  visibility: initial;
+  white-space: initial;
+  widows: initial;
+  word-spacing: initial;
+  word-wrap: initial;
+  word-break: keep-all;
+  font-family: Montserrat;
+  font-weight: 400;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  padding: 8px;
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+}
+
+.bar {
+  color: #ffffff;
+  width: 100%;
+  border: 1px solid transparent;
+  display: flex;
+  opacity: 1;
+  padding: 8px;
+  direction: ltr;
+  background: #202124;
+  box-shadow: none;
+  box-sizing: border-box;
+  transition: background 0.5s;
+  border-color: #202124;
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.exlayout {
+  width: 500px;
+}
+.exlayout .gnb {
+  padding: 15px;
+  background-color: skyblue;
+}
+.exlayout .main {
+  background-color: white;
+}
+.exlayout .main:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.exlayout .main .lnb {
+  float: left;
+  width: 100px;
+  height: 254px;
+  background-color: orange;
+}
+.exlayout .main .content {
+  float: left;
+  width: 400px;
+}
+.exlayout .footer {
+  padding: 15px;
+  background-color: #ddd;
+}
