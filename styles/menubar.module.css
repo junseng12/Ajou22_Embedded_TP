@@ -1,0 +1,47 @@
+.mainlayout {
+  width: 100%;
+  display: flex;
+  position: relative;
+  font-weight: 400;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+}
+
+.menubarwrap {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  z-index: 98;
+  height: 100%;
+  position: relative;
+}
+
+/* .menubar_menubarwrap__suTHP {
+  float: left;
+} */
+
+.barwrap {
+  width: 100%;
+}
+
+.bar {
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  padding: 8px;
+  font-size: 14px;
+  background: #87ceeb;
+  box-sizing: border-box;
+  margin-top: 8px;
+  transition: opacity 0.5s;
+  align-items: center;
+  font-weight: 600;
+  line-height: 14px;
+  border-radius: 6px;
+  width: 100%;
+  text-align: center;
+}
+
+.menubartitle {
+  text-align: center;
+  color: black;
+}

@@ -1,27 +1,35 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
   const router = useRouter();
 
   const menuItems = [
     {
-      href: '/',
-      title: '홈',
+      href: "/",
+      title: "홈",
     },
     {
-      href: '/make-game',
-      title: '게임 제작',
+      href: "/make-game",
+      title: "게임 제작",
     },
     {
-      href: '/manage-game',
-      title: '게임 관리',
+      href: "/manage-game",
+      title: "게임 관리",
     },
     {
-      href: '/participating-now',
-      title: '참가중인 게임',
+      href: "/participating-now",
+      title: "참가중인 게임",
     },
   ];
+
+  //게임 정보 위에 처럼 배열로 끌어오려고 추가했었음 - 제대로 이용하는 방법 모름
+  // const gameItems = [
+  //   {
+  //     href: "/game-info",
+  //     title: "게임 정보",
+  //   },
+  // ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -56,7 +64,7 @@ export default function Layout({ children }) {
                   <Link href={href}>
                     <a
                       className={`flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer ${
-                        router.asPath === href && 'bg-fuchsia-600 text-red'
+                        router.asPath === href && "bg-fuchsia-600 text-red"
                       }`}
                     >
                       {title}
