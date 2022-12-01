@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { ethers } from 'ethers';
-import { useRouter } from 'next/router';
-import Web3Modal from 'web3modal';
+import { useState } from "react";
+import { ethers } from "ethers";
+import { useRouter } from "next/router";
+import Web3Modal from "web3modal";
 
-import { testAddress } from '../config';
-import Test from '../artifacts/contracts/Test.sol/Test.json';
+import { testAddress } from "../config";
+import Test from "../artifacts/contracts/Test.sol/Test.json";
 
 export default function MakeGame() {
   const [formInput, updateFormInput] = useState({
-    gameId: '',
-    startAt: '',
-    finishAt: '',
-    prize: '',
-    joinFeeAmount: '',
-    betFeeAmount: '',
+    gameId: "",
+    startAt: "",
+    finishAt: "",
+    prize: "",
+    joinFeeAmount: "",
+    betFeeAmount: "",
   });
   const router = useRouter();
 
@@ -23,14 +23,14 @@ export default function MakeGame() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
-    const prize = ethers.utils.parseUnits(formInput.prize, 'ether');
+    const prize = ethers.utils.parseUnits(formInput.prize, "ether");
     const joinFeeAmount = ethers.utils.parseUnits(
       formInput.joinFeeAmount,
-      'ether'
+      "ether"
     );
     const betFeeAmount = ethers.utils.parseUnits(
       formInput.betFeeAmount,
-      'ether'
+      "ether"
     );
     let contract = new ethers.Contract(testAddress, Test.abi, signer);
 
@@ -46,7 +46,7 @@ export default function MakeGame() {
     );
     await transaction.wait();
 
-    router.replace('/');
+    router.replace("/");
   }
 
   return (

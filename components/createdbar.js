@@ -1,4 +1,5 @@
 import Link from "next/link";
+//import 'semantic-ui-css/semantic.min.css'
 import Mainbarstyles from "../styles/mainbar.module.css";
 //사용자가 생성한 게임에 대한 bar들로(기존 만들었던 게임바(mainbar)와 다르게 link를 설정해야 된다고 판단해서 새로 만듦)
 export default function Createdbar({ children, home }) {
