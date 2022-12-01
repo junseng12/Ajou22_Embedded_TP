@@ -3,7 +3,7 @@ import Web3Modal from "web3modal";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { testAddress } from "../config";
+// import { testAddress } from "../config";
 import Test from "../artifacts/contracts/test.sol/test.json";
 
 export default function Home() {
