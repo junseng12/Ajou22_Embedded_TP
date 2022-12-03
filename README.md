@@ -40,6 +40,7 @@ npx hardhat node
 
 - deploy your contract
 
+npx hardhat node 실행하면서 새 터미널 열어서 다음 진행
 ```
 npx hardhat run scripts/deploy.js --network localhost
 ```
